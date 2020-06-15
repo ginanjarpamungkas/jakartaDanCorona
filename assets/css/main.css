@@ -1,0 +1,106 @@
+html {font-family: 'Montserrat', sans-serif; /* 1 */-ms-text-size-adjust:none; /* 2 */-webkit-text-size-adjust:none; /* 2 */font-size:18px; -webkit-font-smoothing: antialiased; font-weight:400; color:#000000;margin:0 auto;scroll-behavior: smooth;}
+div,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+body{margin: 0;}
+
+/* header */
+header {font-family: 'Montserrat', sans-serif;color: #fff;font-weight: 700;width: 75%;text-align: center;z-index:1;} 
+header h1 {margin: 0;font-size: 6vw;} 
+header a {color: white;}
+.image_bg {height: 100vh;display: flex;justify-content: center;align-items: center;}
+.pier h1 {color: white;line-height: normal;}
+.pier h2 {color: white;line-height: normal;}  
+.pier h3 {color: white;}
+.bg-blur{width: 100%;height: 100vh;position: absolute;z-index: 0;background-color: rgb(0, 0, 0, 0.5);margin: 0;}
+.tribune-logo-shadow {width:100%;display: block;margin:0 auto;top: 127px;}
+.tribune-logo-shadow img{width:200px; height: auto; margin:0 auto;}
+
+/* content */
+.content {padding: 0 25%;margin: 20pt auto;}
+.content p{margin: 20pt 0;}
+.overflow-hidden {overflow: hidden;}
+.container{margin:0 auto; max-width:1200px; padding:0 15px; display:block; min-height:20px;}
+.container.full{max-width:100%;}
+.container.small{max-width:1000px;}
+.container.smaller{max-width:600px;}
+.container-col{margin-left:-15px; margin-right:-15px;}
+.boxbox{margin:60px auto; padding:30px; border:1px solid #000; overflow:hidden;}
+.boxbox p{margin:0 0 30px 0;}
+.boxbox p:last-child{margin:0;}
+.containerfull{width:100%; display:block; overflow:hidden; border-top:1px solid #000;border-bottom:1px solid #000; position:relative;}
+.containerfull .container50left{width:50%; float:left;margin:0 auto;}
+.containerfull .container50right{width:50%;position:absolute; top:0; bottom:0; right:0; padding:0; display:flex; align-items:center; justify-content:center;}
+.containerfull .container50right .inside{padding:60px; display:flex; align-items:center; justify-content:center; flex-direction:column;}
+.containerfull .container50right .inside p{margin:0 0 30px 0;}
+.containerfull .container50right .inside p:last-child{margin:0;}
+.square {position: relative;width:100%;}
+.square:after {content: "";display: block;padding-bottom: 100%;}
+.square-img {position: absolute;width: 100%;height: 100%; overflow: hidden;display:flex; align-items:center; justify-content: center;}
+.square-img a{display:flex; align-items:center; justify-content: center; height:100%; width:100%;}
+.square-img img{width:auto; height:100% !important; margin:0 auto;}
+.square-img.flat{border-radius:0;}
+/* footer */
+footer{background-color: #000000;clear: both;color: #f5f5f5;margin-top: 0;padding: 30px 0;}
+footer .footer-wrapper {margin: 0 auto;padding: 0 30px;}
+footer .footer-wrapper .conde-links {display: none;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;-webkit-box-pack: start;-ms-flex-pack: start;justify-content: flex-start;}
+footer .conde-links .worldwide {-ms-flex-preferred-size: 242px;flex-basis: 242px;margin: 0 auto;}
+footer .conde-links .worldwide h6 {color: #aeabac;font-size: 12px;font-weight: 700;letter-spacing: .8px;line-height: 2.5;text-transform: uppercase;font-family: Helvetica Neue,Helvetica,Arial,sans-serif;}
+footer .conde-links .worldwide ul {list-style: none;margin: 0;padding: 0;}
+footer .conde-links .worldwide ul li {color: #706d6e;font-size: 12px;font-weight: 400;letter-spacing: 1px;line-height: 2.5;text-decoration: none;text-transform: uppercase;}
+footer .component-corp-legal {margin-top: 30px;color: #999;font-family: VFSans,Helvetica;font-weight: 400;font-size: 13px;line-height: 18px;}
+.component-corp-legal>div {display: -webkit-box;display: -ms-flexbox;display: flex;position: relative;}
+footer .component-corp-legal>div .conde-logo {height: 29px;margin: 0 auto 30px}
+.component-corp-legal .conde-logo {color: #FFFFFF;display: block;height: 22px;margin: 0 auto 25px;text-align: center;width: 200px;}
+
+.social-media {margin:0; padding: 0;position: absolute;right: 0;}
+.social-media li{display: inline-block;margin-left: 5px;}
+.social-media a{font-size: 1.5em;color: #FFFFFF;width: 32px;height: 32px;border-radius: 16px;display: flex;border: 1px solid #fff;justify-content: center;align-items: center;}
+
+
+/* scroll */
+#scrolly {position: relative;background-color: #f3f3f3;}
+figure {position: relative;left: 0;top: 0;height: 100vh;width: 100%;margin: 0;z-index: 1;overflow: hidden;}
+figure#petaJakartaPinning{display: flex;flex-direction: column;justify-content: center;}
+.scontainer{width: 100%;position: relative;z-index: 2;}
+.step {
+  position: relative;
+  max-width:800px;
+  margin: 0 auto 2rem auto;
+  font-family:'Montserrat';
+  height:100vh;
+}
+
+.step:last-child {
+  margin-bottom: 0;
+}
+
+.step-container{
+  background-color: rgba(255,255,255,0.9);
+  border:1px solid #000;
+  padding:15px;
+}
+.desktopMap{display: block;}
+.mobileMap{display: none;}
+/* mobile css */
+@media only screen and (max-width:1024px){
+  .desktopMap{display: none;}
+  .mobileMap{display: block;}
+}
+@media only screen and (max-width:550px){
+footer .footer-wrapper {padding: 0;}
+    footer .footer-wrapper .conde-links{display: grid;grid-template-columns: auto; grid-gap: 10px;padding: 0 25pt; justify-content: center; text-align: center;}
+	footer .conde-links .worldwide {width: 250px;margin: 0 auto;}
+	footer .component-corp-legal>div {margin-top: 10px;display: block;text-align: center;}
+	.social-media {position: unset;padding-bottom: 10pt;}
+}
+@media (min-width: 550px){
+	footer .footer-wrapper .conde-links {display: -webkit-box;display: -ms-flexbox;display: flex;}
+	footer .component-corp-legal {margin-top: 50px;border-top: 1px solid #666;font-size: 13px;line-height: 18px;}
+	footer .component-corp-legal>div {margin-top: 10px;}
+	footer .component-corp-legal>div .conde-logo {margin: 0 40px 0 0;width: auto;}
+}
+@media screen and (max-width:800px){
+.boxbox{margin:30px 10px;}
+.containerfull .container50left{width:100%; float:none;}
+.containerfull .container50right{width:100%; float:none; position:inherit;}
+.containerfull .container50right .inside{padding:30px; margin:30px 10px;}
+}
