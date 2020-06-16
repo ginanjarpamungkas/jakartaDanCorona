@@ -80,6 +80,9 @@ figure#petaJakartaPinning{display: flex;flex-direction: column;justify-content: 
 }
 .desktopMap{display: block;}
 .mobileMap{display: none;}
+.legends{padding: 15pt;position: absolute;right: 0;bottom: 0;list-style: none;}
+.legends li {margin: 10px auto;text-transform: uppercase;}
+.legend{padding: 1px 10px ;margin-right: 2px;border: 1px solid #000;}
 /* mobile css */
 @media only screen and (max-width:1024px){
   .desktopMap{display: none;}
@@ -103,4 +106,6 @@ footer .footer-wrapper {padding: 0;}
 .containerfull .container50left{width:100%; float:none;}
 .containerfull .container50right{width:100%; float:none; position:inherit;}
 .containerfull .container50right .inside{padding:30px; margin:30px 10px;}
+.legends li {display: inline;font-size: 10px;}
+.legend{padding: 0px 5px;}
 }
