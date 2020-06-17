@@ -1,6 +1,7 @@
 var controller = new ScrollMagic.Controller();
 var pinning = $('#flourishPinning')
-var pinningJakarta = $('#petaJakartaPinning')
+var pinningJakarta1 = $('#petaJakarta1Pinning')
+var pinningJakarta2 = $('#petaJakarta2Pinning')
 chart()
 // scrollmagic and flourish here
 pin = new ScrollMagic.Scene({triggerElement: '#pinTrigger'}).triggerHook(0).on("enter",(e)=>{pinning.css('position','fixed').css('top',0).css('bottom','unset')}).on("leave",(e)=>{pinning.css('position','absolute').css('top',0).css('bottom','unset')}).addTo(controller);
@@ -90,196 +91,391 @@ function chart(){
 	});
 }
 
-// map jakarta here
-var svg = d3.select(".desktopMap").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 520').attr('id', 'petaJakarta')
-var gJakarta = svg.append("g").attr("class", "jakarta")
+// map jakarta1 here
+var svg1 = d3.select(".desktopMap1").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 530').attr('id', 'petaJakarta1')
+var gJakarta1 = svg1.append("g").attr("class", "jakarta1")
 var projection = d3.geoMercator().scale(103000).translate([-191570, -10955]);
 var path = d3.geoPath().projection(projection);
 
-var svgMobile = d3.select(".mobileMap").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 960').attr('id', 'petaJakartaMobile')
-var gJakartaMobile = svgMobile.append("g").attr("class", "jakartaMobile")
+var svg1Mobile = d3.select(".mobileMap1").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 960').attr('id', 'petaJakarta1Mobile')
+var gJakarta1Mobile = svg1Mobile.append("g").attr("class", "jakarta1Mobile")
 var projectionMobile = d3.geoMercator().scale(180000).translate([-335128, -19135]);
 var pathMobile = d3.geoPath().projection(projectionMobile);
 
 d3.json("jkt.json",function(json) {
-    jakarta = gJakarta.selectAll("path").data(json.features).enter().append("path").attr("d", path).attr("class", function(d) {return "kab kab-"+ string_to_slug(d.properties.kecamatan)}).style("fill", '#fff').attr("stroke", "#000").attr("stroke-width", 0.2);
-    // textJakarta = gJakarta.selectAll("text").data(json.features).enter().append("svg:text").text(function(d){return d.properties.name;}).attr("x", function(d){return path.centroid(d)[0]+10;}).attr("y", function(d){if(d.properties.name == 'Jakarta Timur'){return path.centroid(d)[1]-18};return  path.centroid(d)[1];}).attr("text-anchor","middle").attr('font-size','10pt').attr('font-weight','bold').attr('class','kabText');
-    jakartaMobile = gJakartaMobile.selectAll("path").data(json.features).enter().append("path").attr("d", pathMobile).attr("class", function(d) {return "kab kab-"+string_to_slug(d.properties.kecamatan)}).style("fill", '#fff').attr("stroke", "#000").attr("stroke-width", 0.2);
+    jakarta1 = gJakarta1.selectAll("path").data(json.features).enter().append("path").attr("d", path).attr("class", function(d) {return "desa desa-"+ string_to_slug(d.properties.name)}).style("fill", '#fff').attr("stroke", "#000").attr("stroke-width", 0.2);
+    // textJakarta = gJakarta.selectAll("text").data(json.features).enter().append("svg:text").text(function(d){return d.properties.name;}).attr("x", function(d){return path.centroid(d)[0]+10;}).attr("y", function(d){if(d.properties.name == 'Jakarta Timur'){return path.centroid(d)[1]-18};return  path.centroid(d)[1];}).attr("text-anchor","middle").attr('font-size','10pt').attr('font-weight','bold').attr('class','desaText');
+    jakarta1Mobile = gJakarta1Mobile.selectAll("path").data(json.features).enter().append("path").attr("d", pathMobile).attr("class", function(d) {return "desa desa-"+string_to_slug(d.properties.name)}).style("fill", '#fff').attr("stroke", "#000").attr("stroke-width", 0.2);
 });
 
 // scrollmagic and map here
-var color = ['#ffffff', '#ffe1d9', '#ffc3b3', '#f9a48e', '#f2866b', '#e76649', '#db4227', '#cc0000']
-pinJakarta = new ScrollMagic.Scene({triggerElement: '#pinJakartaTrigger'}).triggerHook(0).on("enter",(e)=>{pinningJakarta.css('position','fixed').css('top',0).css('bottom','unset')}).on("leave",(e)=>{pinningJakarta.css('position','absolute').css('top',0).css('bottom','unset')}).addTo(controller);
-endpinJakarta = new ScrollMagic.Scene({triggerElement: '#endpinJakartaTrigger'}).triggerHook(1).on("enter",(e)=>{pinningJakarta.css('position','absolute').css('top','unset').css('bottom',0)}).on("leave",(e)=>{pinningJakarta.css('position','fixed').css('top',0).css('bottom','unset')}).addTo(controller);
+var color =  ['#ffffff', '#ffeae4', '#ffd5ca', '#fec0af', '#fbaa96', '#f6957d', '#f07f64', '#e8694d', '#e05135', '#d6351d', '#cc0000']
+pinJakarta1 = new ScrollMagic.Scene({triggerElement: '#pinJakarta1Trigger'}).triggerHook(0).on("enter",(e)=>{pinningJakarta1.css('position','fixed').css('top',0).css('bottom','unset')}).on("leave",(e)=>{pinningJakarta1.css('position','absolute').css('top',0).css('bottom','unset')}).addTo(controller);
+endpinJakarta1 = new ScrollMagic.Scene({triggerElement: '#endpinJakarta1Trigger'}).triggerHook(1).on("enter",(e)=>{pinningJakarta1.css('position','absolute').css('top','unset').css('bottom',0)}).on("leave",(e)=>{pinningJakarta1.css('position','fixed').css('top',0).css('bottom','unset')}).addTo(controller);
 
-sceneJakarta1 = new ScrollMagic.Scene({triggerElement: "#stepMap1"}).triggerHook(1)
+scene1Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step1Map1"}).triggerHook(1)
                     .on("enter",(e)=>{
-                        d3.csv('dataMaret.csv',function(csv){
+                        d3.csv('data28maret.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if (v.positif > 351) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[7])
-								} else if (v.positif > 301) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[6])
-								} else if (v.positif > 251) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[5])
-								} else if (v.positif > 201) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[4])
-								} else if (v.positif > 151) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[3])
-								} else if (v.positif > 101) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[2])
-								} else if (v.positif > 51) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[1])
-								} else if (v.positif < 51) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[0])
+								// if (v.positif > 140) {
+								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								// } else if (v.positif > 120) {
+								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								// } else if (v.positif > 100) {
+								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								// } else if (v.positif > 80) {
+								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								// } else if (v.positif > 60) {
+								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								// } else if (v.positif > 40) {
+								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								// } else if (v.positif > 20) {
+								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								// } else if (v.positif < 20) {
+								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								// }
+
+								if (v.positif > 90) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
+								} else if (v.positif > 80) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
+								} else if (v.positif > 70) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[0])
 								}
 							})
 						})
                     })
                     .on("leave",(e)=>{
-                        $('.kab').css('fill','#fff')
+                        $('.desa').css('fill','#fff')
                     }).addTo(controller);
-sceneJakarta2 = new ScrollMagic.Scene({triggerElement: "#stepMap2"}).triggerHook(1)
+scene2Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step2Map1"}).triggerHook(1)
                     .on("enter",(e)=>{
-                        d3.csv('dataApril.csv',function(csv){
+                        d3.csv('data4april.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if (v.positif > 351) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[7])
-								} else if (v.positif > 301) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[6])
-								} else if (v.positif > 251) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[5])
-								} else if (v.positif > 201) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[4])
-								} else if (v.positif > 151) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[3])
-								} else if (v.positif > 101) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[2])
-								} else if (v.positif > 51) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[1])
-								} else if (v.positif < 51) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[0])
+								if (v.positif > 90) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
+								} else if (v.positif > 80) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
+								} else if (v.positif > 70) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[0])
 								}
 							})
 						})
                     })
                     .on("leave",(e)=>{
-                        d3.csv('dataMaret.csv',function(csv){
+                        d3.csv('data28maret.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if (v.positif > 351) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[7])
-								} else if (v.positif > 301) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[6])
-								} else if (v.positif > 251) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[5])
-								} else if (v.positif > 201) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[4])
-								} else if (v.positif > 151) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[3])
-								} else if (v.positif > 101) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[2])
-								} else if (v.positif > 51) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[1])
-								} else if (v.positif < 51) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[0])
-								}
-							})
-						})
-                    }).addTo(controller);
-sceneJakarta3 = new ScrollMagic.Scene({triggerElement: "#stepMap3"}).triggerHook(1)
-                    .on("enter",(e)=>{
-                        d3.csv('dataMei.csv',function(csv){
-							$.each(csv, function(id,v) {
-								if (v.positif > 351) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[7])
-								} else if (v.positif > 301) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[6])
-								} else if (v.positif > 251) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[5])
-								} else if (v.positif > 201) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[4])
-								} else if (v.positif > 151) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[3])
-								} else if (v.positif > 101) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[2])
-								} else if (v.positif > 51) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[1])
-								} else if (v.positif < 51) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[0])
-								}
-							})
-						})
-                    })
-                    .on("leave",(e)=>{
-                        d3.csv('dataApril.csv',function(csv){
-							$.each(csv, function(id,v) {
-								if (v.positif > 351) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[7])
-								} else if (v.positif > 301) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[6])
-								} else if (v.positif > 251) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[5])
-								} else if (v.positif > 201) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[4])
-								} else if (v.positif > 151) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[3])
-								} else if (v.positif > 101) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[2])
-								} else if (v.positif > 51) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[1])
-								} else if (v.positif < 51) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[0])
+								if (v.positif > 90) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
+								} else if (v.positif > 80) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
+								} else if (v.positif > 70) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[0])
 								}
 							})
 						})
                     }).addTo(controller);
-sceneJakarta4 = new ScrollMagic.Scene({triggerElement: "#stepMap4"}).triggerHook(1)
+scene3Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step3Map1"}).triggerHook(1)
                     .on("enter",(e)=>{
-                        d3.csv('dataJuni.csv',function(csv){
+                        d3.csv('data11april.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if (v.positif > 351) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[7])
-								} else if (v.positif > 301) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[6])
-								} else if (v.positif > 251) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[5])
-								} else if (v.positif > 201) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[4])
-								} else if (v.positif > 151) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[3])
-								} else if (v.positif > 101) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[2])
-								} else if (v.positif > 51) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[1])
-								} else if (v.positif < 51) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[0])
+								if (v.positif > 90) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
+								} else if (v.positif > 80) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
+								} else if (v.positif > 70) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[0])
 								}
 							})
 						})
                     })
                     .on("leave",(e)=>{
-                        d3.csv('dataMei.csv',function(csv){
+                        d3.csv('data4april.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if (v.positif > 351) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[7])
-								} else if (v.positif > 301) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[6])
-								} else if (v.positif > 251) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[5])
-								} else if (v.positif > 201) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[4])
-								} else if (v.positif > 151) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[3])
-								} else if (v.positif > 101) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[2])
-								} else if (v.positif > 51) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[1])
-								} else if (v.positif < 51) {
-									$('.kab-'+string_to_slug(v.kecamatan)).css('fill',color[0])
+								if (v.positif > 90) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
+								} else if (v.positif > 80) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
+								} else if (v.positif > 70) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[0])
 								}
 							})
 						})
-					}).addTo(controller);
+                    }).addTo(controller);
+					
+// map jakarta2 here
+var svg = d3.select(".desktopMap2").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 530').attr('id', 'petaJakarta2')
+var gJakarta2 = svg.append("g").attr("class", "jakarta2")
+
+var svgMobile = d3.select(".mobileMap2").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 960').attr('id', 'petaJakarta2Mobile')
+var gJakarta2Mobile = svgMobile.append("g").attr("class", "jakarta2Mobile")
+
+d3.json("jkt.json",function(json) {
+    jakarta2 = gJakarta2.selectAll("path").data(json.features).enter().append("path").attr("d", path).attr("class", function(d) {return "desa desa-"+ string_to_slug(d.properties.name)}).style("fill", '#fff').attr("stroke", "#000").attr("stroke-width", 0.2);
+    jakarta2Mobile = gJakarta2Mobile.selectAll("path").data(json.features).enter().append("path").attr("d", pathMobile).attr("class", function(d) {return "desa desa-"+string_to_slug(d.properties.name)}).style("fill", '#fff').attr("stroke", "#000").attr("stroke-width", 0.2);
+});
+
+// scrollmagic and map here
+pinJakarta2 = new ScrollMagic.Scene({triggerElement: '#pinJakarta2Trigger'}).triggerHook(0).on("enter",(e)=>{pinningJakarta2.css('position','fixed').css('top',0).css('bottom','unset')}).on("leave",(e)=>{pinningJakarta2.css('position','absolute').css('top',0).css('bottom','unset')}).addTo(controller);
+endpinJakarta2 = new ScrollMagic.Scene({triggerElement: '#endpinJakarta2Trigger'}).triggerHook(1).on("enter",(e)=>{pinningJakarta2.css('position','absolute').css('top','unset').css('bottom',0)}).on("leave",(e)=>{pinningJakarta2.css('position','fixed').css('top',0).css('bottom','unset')}).addTo(controller);
+
+scene1Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step1Map2"}).triggerHook(1)
+                    .on("enter",(e)=>{
+                        d3.csv('data25april.csv',function(csv){
+							$.each(csv, function(id,v) {
+								if (v.positif > 90) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
+								} else if (v.positif > 80) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
+								} else if (v.positif > 70) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								}
+							})
+						})
+                    })
+                    .on("leave",(e)=>{
+                        d3.csv('data11april.csv',function(csv){
+							$.each(csv, function(id,v) {
+								if (v.positif > 90) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
+								} else if (v.positif > 80) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
+								} else if (v.positif > 70) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								}
+							})
+						})
+                    }).addTo(controller);
+scene2Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step2Map2"}).triggerHook(1)
+                    .on("enter",(e)=>{
+                        d3.csv('data16mei.csv',function(csv){
+							$.each(csv, function(id,v) {
+								if (v.positif > 90) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
+								} else if (v.positif > 80) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
+								} else if (v.positif > 70) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								}
+							})
+						})
+                    })
+                    .on("leave",(e)=>{
+                        d3.csv('data25april.csv',function(csv){
+							$.each(csv, function(id,v) {
+								if (v.positif > 90) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
+								} else if (v.positif > 80) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
+								} else if (v.positif > 70) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								}
+							})
+						})
+                    }).addTo(controller);
+scene3Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step3Map2"}).triggerHook(1)
+                    .on("enter",(e)=>{
+                        d3.csv('data5juni.csv',function(csv){
+							$.each(csv, function(id,v) {
+								if (v.positif > 90) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
+								} else if (v.positif > 80) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
+								} else if (v.positif > 70) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								}
+							})
+						})
+                    })
+                    .on("leave",(e)=>{
+                        d3.csv('data16mei.csv',function(csv){
+							$.each(csv, function(id,v) {
+								if (v.positif > 90) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
+								} else if (v.positif > 80) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
+								} else if (v.positif > 70) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								}
+							})
+						})
+                    }).addTo(controller);
 					
 function string_to_slug(str) {
 	str = str.replace(/^\s+|\s+$/g, ""); // trim
