@@ -2,6 +2,8 @@ var controller = new ScrollMagic.Controller();
 var pinning = $('#flourishPinning')
 var pinningJakarta1 = $('#petaJakarta1Pinning')
 var pinningJakarta2 = $('#petaJakarta2Pinning')
+var pinningJakarta3 = $('#petaJakarta3Pinning')
+var pinningJakarta4 = $('#petaJakarta4Pinning')
 chart()
 // scrollmagic and flourish here
 pin = new ScrollMagic.Scene({triggerElement: '#pinTrigger'}).triggerHook(0).on("enter",(e)=>{pinning.css('position','fixed').css('top',0).css('bottom','unset')}).on("leave",(e)=>{pinning.css('position','absolute').css('top',0).css('bottom','unset')}).addTo(controller);
@@ -91,16 +93,23 @@ function chart(){
 	});
 }
 
+var projection = d3.geoMercator().scale(103000).translate([-191570, -10955]);
+var path = d3.geoPath().projection(projection);
+var projectionMobile = d3.geoMercator().scale(180000).translate([-335128, -19135]);
+var pathMobile = d3.geoPath().projection(projectionMobile);
+
 // map jakarta1 here
 var svg1 = d3.select(".desktopMap1").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 530').attr('id', 'petaJakarta1')
 var gJakarta1 = svg1.append("g").attr("class", "jakarta1")
-var projection = d3.geoMercator().scale(103000).translate([-191570, -10955]);
-var path = d3.geoPath().projection(projection);
+var title1 = svg1.append("text").attr("class", "title-kelurahan").attr("transform", "translate(" + 150 + "," + 400 + ")").text('Kelurahan Terjangkit').attr('font-weight','bold')
+var jumlah1 = title1.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','kelurahanTerjangkit');
+var range1 = title1.append('tspan').attr('x',30).attr('dy', '0').text(" dari 267 kelurahan").attr('font-weight','400');
 
 var svg1Mobile = d3.select(".mobileMap1").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 960').attr('id', 'petaJakarta1Mobile')
 var gJakarta1Mobile = svg1Mobile.append("g").attr("class", "jakarta1Mobile")
-var projectionMobile = d3.geoMercator().scale(180000).translate([-335128, -19135]);
-var pathMobile = d3.geoPath().projection(projectionMobile);
+var title1Mobile = svg1Mobile.append("text").attr("class", "title-kelurahan").attr("transform", "translate(" + 50 + "," + 800 + ")").text('Kelurahan Terjangkit').attr('font-weight','bold').attr('font-size','20pt')
+var jumlah1Mobile = title1Mobile.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','kelurahanTerjangkit');
+var range1Mobile = title1Mobile.append('tspan').attr('x',40).attr('dy', '0').text(" dari 267 kelurahan").attr('font-weight','400');
 
 d3.json("jkt.json",function(json) {
     jakarta1 = gJakarta1.selectAll("path").data(json.features).enter().append("path").attr("d", path).attr("class", function(d) {return "desa desa-"+ string_to_slug(d.properties.name)}).style("fill", '#fff').attr("stroke", "#000").attr("stroke-width", 0.2);
@@ -109,37 +118,24 @@ d3.json("jkt.json",function(json) {
 });
 
 // scrollmagic and map here
-var color =  ['#ffffff', '#ffeae4', '#ffd5ca', '#fec0af', '#fbaa96', '#f6957d', '#f07f64', '#e8694d', '#e05135', '#d6351d', '#cc0000']
+var color =  ['#ffffff', '#ffe5de', '#ffcabc', '#fcb09c', '#f6957d', '#ee7a5e', '#e45d41', '#d93d23', '#cc0000']
 pinJakarta1 = new ScrollMagic.Scene({triggerElement: '#pinJakarta1Trigger'}).triggerHook(0).on("enter",(e)=>{pinningJakarta1.css('position','fixed').css('top',0).css('bottom','unset')}).on("leave",(e)=>{pinningJakarta1.css('position','absolute').css('top',0).css('bottom','unset')}).addTo(controller);
 endpinJakarta1 = new ScrollMagic.Scene({triggerElement: '#endpinJakarta1Trigger'}).triggerHook(1).on("enter",(e)=>{pinningJakarta1.css('position','absolute').css('top','unset').css('bottom',0)}).on("leave",(e)=>{pinningJakarta1.css('position','fixed').css('top',0).css('bottom','unset')}).addTo(controller);
-
+var jumlahKelurahanTerjangkit = 0;
 scene1Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step1Map1"}).triggerHook(1)
                     .on("enter",(e)=>{
                         d3.csv('data28maret.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
 							$.each(csv, function(id,v) {
-								// if (v.positif > 140) {
-								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
-								// } else if (v.positif > 120) {
-								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[6])
-								// } else if (v.positif > 100) {
-								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[5])
-								// } else if (v.positif > 80) {
-								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[4])
-								// } else if (v.positif > 60) {
-								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[3])
-								// } else if (v.positif > 40) {
-								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[2])
-								// } else if (v.positif > 20) {
-								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[1])
-								// } else if (v.positif < 20) {
-								// 	$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[0])
-								// }
-
-								if (v.positif > 90) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
-								} else if (v.positif > 80) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
-								} else if (v.positif > 70) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah1.text(jumlahKelurahanTerjangkit)
+									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah2.text(jumlahKelurahanTerjangkit)
+									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
@@ -162,17 +158,29 @@ scene1Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step1Map1"}).triggerHo
 						})
                     })
                     .on("leave",(e)=>{
+						jumlahKelurahanTerjangkit = 0
+						jumlah1.text(jumlahKelurahanTerjangkit)
+						jumlah1Mobile.text(jumlahKelurahanTerjangkit)
+						jumlah2.text(jumlahKelurahanTerjangkit)
+						jumlah2Mobile.text(jumlahKelurahanTerjangkit)
+						jumlah3.text(jumlahKelurahanTerjangkit)
+						jumlah3Mobile.text(jumlahKelurahanTerjangkit)
                         $('.desa').css('fill','#fff')
                     }).addTo(controller);
 scene2Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step2Map1"}).triggerHook(1)
                     .on("enter",(e)=>{
                         d3.csv('data4april.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
 							$.each(csv, function(id,v) {
-								if (v.positif > 90) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
-								} else if (v.positif > 80) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
-								} else if (v.positif > 70) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah1.text(jumlahKelurahanTerjangkit)
+									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah2.text(jumlahKelurahanTerjangkit)
+									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
@@ -196,12 +204,17 @@ scene2Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step2Map1"}).triggerHo
                     })
                     .on("leave",(e)=>{
                         d3.csv('data28maret.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
 							$.each(csv, function(id,v) {
-								if (v.positif > 90) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
-								} else if (v.positif > 80) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
-								} else if (v.positif > 70) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah1.text(jumlahKelurahanTerjangkit)
+									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah2.text(jumlahKelurahanTerjangkit)
+									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
@@ -226,12 +239,17 @@ scene2Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step2Map1"}).triggerHo
 scene3Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step3Map1"}).triggerHook(1)
                     .on("enter",(e)=>{
                         d3.csv('data11april.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
 							$.each(csv, function(id,v) {
-								if (v.positif > 90) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
-								} else if (v.positif > 80) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
-								} else if (v.positif > 70) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah1.text(jumlahKelurahanTerjangkit)
+									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah2.text(jumlahKelurahanTerjangkit)
+									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
@@ -255,12 +273,17 @@ scene3Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step3Map1"}).triggerHo
                     })
                     .on("leave",(e)=>{
                         d3.csv('data4april.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
 							$.each(csv, function(id,v) {
-								if (v.positif > 90) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
-								} else if (v.positif > 80) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
-								} else if (v.positif > 70) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah1.text(jumlahKelurahanTerjangkit)
+									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah2.text(jumlahKelurahanTerjangkit)
+									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
@@ -284,11 +307,17 @@ scene3Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step3Map1"}).triggerHo
                     }).addTo(controller);
 					
 // map jakarta2 here
-var svg = d3.select(".desktopMap2").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 530').attr('id', 'petaJakarta2')
-var gJakarta2 = svg.append("g").attr("class", "jakarta2")
+var svg2 = d3.select(".desktopMap2").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 530').attr('id', 'petaJakarta2')
+var gJakarta2 = svg2.append("g").attr("class", "jakarta2")
+var title2 = svg2.append("text").attr("class", "title-kelurahan").attr("transform", "translate(" + 150 + "," + 400 + ")").text('Kelurahan Terjangkit').attr('font-weight','bold')
+var jumlah2 = title2.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','kelurahanTerjangkit');
+var range2 = title2.append('tspan').attr('x',30).attr('dy', '0').text(" dari 267 kelurahan").attr('font-weight','400');
 
-var svgMobile = d3.select(".mobileMap2").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 960').attr('id', 'petaJakarta2Mobile')
-var gJakarta2Mobile = svgMobile.append("g").attr("class", "jakarta2Mobile")
+var svg2Mobile = d3.select(".mobileMap2").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 960').attr('id', 'petaJakarta2Mobile')
+var gJakarta2Mobile = svg2Mobile.append("g").attr("class", "jakarta2Mobile")
+var title2Mobile = svg2Mobile.append("text").attr("class", "title-kelurahan").attr("transform", "translate(" + 50 + "," + 800 + ")").text('Kelurahan Terjangkit').attr('font-weight','bold').attr('font-size','20pt')
+var jumlah2Mobile = title2Mobile.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','kelurahanTerjangkit');
+var range2Mobile = title2Mobile.append('tspan').attr('x',40).attr('dy', '0').text(" dari 267 kelurahan").attr('font-weight','400');
 
 d3.json("jkt.json",function(json) {
     jakarta2 = gJakarta2.selectAll("path").data(json.features).enter().append("path").attr("d", path).attr("class", function(d) {return "desa desa-"+ string_to_slug(d.properties.name)}).style("fill", '#fff').attr("stroke", "#000").attr("stroke-width", 0.2);
@@ -302,12 +331,17 @@ endpinJakarta2 = new ScrollMagic.Scene({triggerElement: '#endpinJakarta2Trigger'
 scene1Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step1Map2"}).triggerHook(1)
                     .on("enter",(e)=>{
                         d3.csv('data25april.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
 							$.each(csv, function(id,v) {
-								if (v.positif > 90) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
-								} else if (v.positif > 80) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
-								} else if (v.positif > 70) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah1.text(jumlahKelurahanTerjangkit)
+									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah2.text(jumlahKelurahanTerjangkit)
+									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
@@ -331,12 +365,17 @@ scene1Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step1Map2"}).triggerHo
                     })
                     .on("leave",(e)=>{
                         d3.csv('data11april.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
 							$.each(csv, function(id,v) {
-								if (v.positif > 90) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
-								} else if (v.positif > 80) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
-								} else if (v.positif > 70) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah1.text(jumlahKelurahanTerjangkit)
+									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah2.text(jumlahKelurahanTerjangkit)
+									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
@@ -361,12 +400,17 @@ scene1Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step1Map2"}).triggerHo
 scene2Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step2Map2"}).triggerHook(1)
                     .on("enter",(e)=>{
                         d3.csv('data16mei.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
 							$.each(csv, function(id,v) {
-								if (v.positif > 90) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
-								} else if (v.positif > 80) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
-								} else if (v.positif > 70) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah1.text(jumlahKelurahanTerjangkit)
+									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah2.text(jumlahKelurahanTerjangkit)
+									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
@@ -390,12 +434,17 @@ scene2Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step2Map2"}).triggerHo
                     })
                     .on("leave",(e)=>{
                         d3.csv('data25april.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
 							$.each(csv, function(id,v) {
-								if (v.positif > 90) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
-								} else if (v.positif > 80) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
-								} else if (v.positif > 70) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah1.text(jumlahKelurahanTerjangkit)
+									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah2.text(jumlahKelurahanTerjangkit)
+									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
@@ -420,12 +469,17 @@ scene2Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step2Map2"}).triggerHo
 scene3Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step3Map2"}).triggerHook(1)
                     .on("enter",(e)=>{
                         d3.csv('data5juni.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
 							$.each(csv, function(id,v) {
-								if (v.positif > 90) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
-								} else if (v.positif > 80) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
-								} else if (v.positif > 70) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah1.text(jumlahKelurahanTerjangkit)
+									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah2.text(jumlahKelurahanTerjangkit)
+									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
@@ -449,12 +503,17 @@ scene3Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step3Map2"}).triggerHo
                     })
                     .on("leave",(e)=>{
                         d3.csv('data16mei.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
 							$.each(csv, function(id,v) {
-								if (v.positif > 90) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[10])
-								} else if (v.positif > 80) {
-									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[9])
-								} else if (v.positif > 70) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah1.text(jumlahKelurahanTerjangkit)
+									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah2.text(jumlahKelurahanTerjangkit)
+									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[7])
@@ -476,7 +535,359 @@ scene3Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step3Map2"}).triggerHo
 							})
 						})
                     }).addTo(controller);
-					
+// map jakarta3 here
+var svg3 = d3.select(".desktopMap3").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 530').attr('id', 'petaJakarta3')
+var gJakarta3 = svg3.append("g").attr("class", "jakarta3")
+var title3 = svg3.append("text").attr("class", "title-kelurahan").attr("transform", "translate(" + 150 + "," + 400 + ")").text('Kelurahan Terjangkit').attr('font-weight','bold')
+var jumlah3 = title3.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','kelurahanTerjangkit');
+var range3 = title3.append('tspan').attr('x',30).attr('dy', '0').text(" dari 267 kelurahan").attr('font-weight','400');
+
+var svg3Mobile = d3.select(".mobileMap3").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 960').attr('id', 'petaJakarta3Mobile')
+var gJakarta3Mobile = svg3Mobile.append("g").attr("class", "jakarta3Mobile")
+var title3Mobile = svg3Mobile.append("text").attr("class", "title-kelurahan").attr("transform", "translate(" + 50 + "," + 800 + ")").text('Kelurahan Terjangkit').attr('font-weight','bold').attr('font-size','20pt')
+var jumlah3Mobile = title3Mobile.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','kelurahanTerjangkit');
+var range3Mobile = title3Mobile.append('tspan').attr('x',40).attr('dy', '0').text(" dari 267 kelurahan").attr('font-weight','400');
+
+d3.json("jkt.json",function(json) {
+    jakarta3 = gJakarta3.selectAll("path").data(json.features).enter().append("path").attr("d", path).attr("class", function(d) {return "desa2-"+ string_to_slug(d.properties.name)}).style("fill", '#fff').attr("stroke", "#000").attr("stroke-width", 0.2);
+    jakarta3Mobile = gJakarta3Mobile.selectAll("path").data(json.features).enter().append("path").attr("d", pathMobile).attr("class", function(d) {return "desa2-"+string_to_slug(d.properties.name)}).style("fill", '#fff').attr("stroke", "#000").attr("stroke-width", 0.2);
+});
+
+// scrollmagic and map here
+pinJakarta3 = new ScrollMagic.Scene({triggerElement: '#pinJakarta3Trigger'}).triggerHook(0).on("enter",(e)=>{pinningJakarta3.css('position','fixed').css('top',0).css('bottom','unset')}).on("leave",(e)=>{pinningJakarta3.css('position','absolute').css('top',0).css('bottom','unset')}).addTo(controller);
+endpinJakarta3 = new ScrollMagic.Scene({triggerElement: '#endpinJakarta3Trigger'}).triggerHook(1).on("enter",(e)=>{pinningJakarta3.css('position','absolute').css('top','unset').css('bottom',0)}).on("leave",(e)=>{pinningJakarta3.css('position','fixed').css('top',0).css('bottom','unset')}).addTo(controller);
+
+scene1Jakarta3 = new ScrollMagic.Scene({triggerElement: "#step1Map3"}).triggerHook(1)
+                    .on("enter",(e)=>{
+                        d3.csv('data17april.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
+							$.each(csv, function(id,v) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah3.text(jumlahKelurahanTerjangkit)
+									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah4.text(jumlahKelurahanTerjangkit)
+									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
+								}
+								if (v.positif > 70) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								}
+							})
+						})
+                    })
+                    .on("leave",(e)=>{
+                        d3.csv('data11april.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
+							$.each(csv, function(id,v) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah3.text(jumlahKelurahanTerjangkit)
+									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah4.text(jumlahKelurahanTerjangkit)
+									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								}
+							})
+						})
+                    }).addTo(controller);
+scene2Jakarta3 = new ScrollMagic.Scene({triggerElement: "#step2Map3"}).triggerHook(1)
+                    .on("enter",(e)=>{
+                        d3.csv('data24april.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
+							$.each(csv, function(id,v) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah3.text(jumlahKelurahanTerjangkit)
+									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah4.text(jumlahKelurahanTerjangkit)
+									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								}
+							})
+						})
+                    })
+                    .on("leave",(e)=>{
+                        d3.csv('data17april.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
+							$.each(csv, function(id,v) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah3.text(jumlahKelurahanTerjangkit)
+									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah4.text(jumlahKelurahanTerjangkit)
+									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								}
+							})
+						})
+					}).addTo(controller);
+// map jakarta4 here
+var svg4 = d3.select(".desktopMap4").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 530').attr('id', 'petaJakarta4')
+var gJakarta4 = svg4.append("g").attr("class", "jakarta4")
+var title4 = svg4.append("text").attr("class", "title-kelurahan").attr("transform", "translate(" + 150 + "," + 400 + ")").text('Kelurahan Terjangkit').attr('font-weight','bold')
+var jumlah4 = title4.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','kelurahanTerjangkit');
+var range4 = title4.append('tspan').attr('x',30).attr('dy', '0').text(" dari 267 kelurahan").attr('font-weight','400');
+
+var svg4Mobile = d3.select(".mobileMap4").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 960').attr('id', 'petaJakarta4Mobile')
+var gJakarta4Mobile = svg4Mobile.append("g").attr("class", "jakarta4Mobile")
+var title4Mobile = svg4Mobile.append("text").attr("class", "title-kelurahan").attr("transform", "translate(" + 50 + "," + 800 + ")").text('Kelurahan Terjangkit').attr('font-weight','bold').attr('font-size','20pt')
+var jumlah4Mobile = title4Mobile.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','kelurahanTerjangkit');
+var range4Mobile = title4Mobile.append('tspan').attr('x',40).attr('dy', '0').text(" dari 267 kelurahan").attr('font-weight','400');
+
+d3.json("jkt.json",function(json) {
+    jakarta4 = gJakarta4.selectAll("path").data(json.features).enter().append("path").attr("d", path).attr("class", function(d) {return "desa2-"+ string_to_slug(d.properties.name)}).style("fill", '#fff').attr("stroke", "#000").attr("stroke-width", 0.2);
+    jakarta4Mobile = gJakarta4Mobile.selectAll("path").data(json.features).enter().append("path").attr("d", pathMobile).attr("class", function(d) {return "desa2-"+string_to_slug(d.properties.name)}).style("fill", '#fff').attr("stroke", "#000").attr("stroke-width", 0.2);
+});
+
+// scrollmagic and map here
+pinJakarta4 = new ScrollMagic.Scene({triggerElement: '#pinJakarta4Trigger'}).triggerHook(0).on("enter",(e)=>{pinningJakarta4.css('position','fixed').css('top',0).css('bottom','unset')}).on("leave",(e)=>{pinningJakarta4.css('position','absolute').css('top',0).css('bottom','unset')}).addTo(controller);
+endpinJakarta4 = new ScrollMagic.Scene({triggerElement: '#endpinJakarta4Trigger'}).triggerHook(1).on("enter",(e)=>{pinningJakarta4.css('position','absolute').css('top','unset').css('bottom',0)}).on("leave",(e)=>{pinningJakarta4.css('position','fixed').css('top',0).css('bottom','unset')}).addTo(controller);
+
+scene1Jakarta4 = new ScrollMagic.Scene({triggerElement: "#step1Map4"}).triggerHook(1)
+                    .on("enter",(e)=>{
+                        d3.csv('data8mei.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
+							$.each(csv, function(id,v) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah3.text(jumlahKelurahanTerjangkit)
+									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah4.text(jumlahKelurahanTerjangkit)
+									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
+								}
+								if (v.positif > 70) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								}
+							})
+						})
+                    })
+                    .on("leave",(e)=>{
+                        d3.csv('data24april.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
+							$.each(csv, function(id,v) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah3.text(jumlahKelurahanTerjangkit)
+									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah4.text(jumlahKelurahanTerjangkit)
+									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								}
+							})
+						})
+                    }).addTo(controller);
+scene2Jakarta4 = new ScrollMagic.Scene({triggerElement: "#step2Map4"}).triggerHook(1)
+                    .on("enter",(e)=>{
+                        d3.csv('data22mei.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
+							$.each(csv, function(id,v) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah3.text(jumlahKelurahanTerjangkit)
+									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah4.text(jumlahKelurahanTerjangkit)
+									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								}
+							})
+						})
+                    })
+                    .on("leave",(e)=>{
+                        d3.csv('data8mei.csv',function(csv){
+							jumlahKelurahanTerjangkit = 0
+							$.each(csv, function(id,v) {
+								if(v.positif > 0){
+									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+									jumlah3.text(jumlahKelurahanTerjangkit)
+									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
+									jumlah4.text(jumlahKelurahanTerjangkit)
+									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
+									
+								}
+								if (v.positif > 70) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+								} else if (v.positif > 60) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+								} else if (v.positif > 50) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+								} else if (v.positif > 40) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+								} else if (v.positif > 30) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+								} else if (v.positif > 20) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+								} else if (v.positif > 10) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+								} else if (v.positif > 5) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+								} else if (v.positif < 6) {
+									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+								}
+							})
+						})
+					}).addTo(controller);
+
+$(window).bind('load',function() {
+	d3.csv('data11april.csv',function(csv){
+		jumlahKelurahanTerjangkit = 0
+		$.each(csv, function(id,v) {
+			if(v.positif > 0){
+				jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
+				jumlah3.text(jumlahKelurahanTerjangkit)
+				jumlah3Mobile.text(jumlahKelurahanTerjangkit)
+				jumlah4.text(jumlahKelurahanTerjangkit)
+				jumlah4Mobile.text(jumlahKelurahanTerjangkit)
+				
+			}
+			if (v.positif > 70) {
+				$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
+			} else if (v.positif > 60) {
+				$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[7])
+			} else if (v.positif > 50) {
+				$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[6])
+			} else if (v.positif > 40) {
+				$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[5])
+			} else if (v.positif > 30) {
+				$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[4])
+			} else if (v.positif > 20) {
+				$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[3])
+			} else if (v.positif > 10) {
+				$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[2])
+			} else if (v.positif > 5) {
+				$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[1])
+			} else if (v.positif < 6) {
+				$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[0])
+			}
+		})
+	})
+})
 function string_to_slug(str) {
 	str = str.replace(/^\s+|\s+$/g, ""); // trim
 	str = str.toLowerCase();
