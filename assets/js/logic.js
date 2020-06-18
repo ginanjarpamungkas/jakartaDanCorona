@@ -125,23 +125,18 @@ d3.json("jkt.json",function(json) {
 var color =  ['#ffffff', '#ffe5de', '#ffcabc', '#fcb09c', '#f6957d', '#ee7a5e', '#e45d41', '#d93d23', '#cc0000']
 pinJakarta1 = new ScrollMagic.Scene({triggerElement: '#pinJakarta1Trigger'}).triggerHook(0).on("enter",(e)=>{pinningJakarta1.css('position','fixed').css('top',0).css('bottom','unset')}).on("leave",(e)=>{pinningJakarta1.css('position','absolute').css('top',0).css('bottom','unset')}).addTo(controller);
 endpinJakarta1 = new ScrollMagic.Scene({triggerElement: '#endpinJakarta1Trigger'}).triggerHook(1).on("enter",(e)=>{pinningJakarta1.css('position','absolute').css('top','unset').css('bottom',0)}).on("leave",(e)=>{pinningJakarta1.css('position','fixed').css('top',0).css('bottom','unset')}).addTo(controller);
-var jumlahKelurahanTerjangkit = 0;
 scene1Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step1Map1"}).triggerHook(1)
                     .on("enter",(e)=>{
 						tgl1.text('25 Maret - 28 Maret 2020')
 						tgl1Mobile.text('25 Maret - 28 Maret 2020')
 						tgl2.text('25 Maret - 28 Maret 2020')
 						tgl2Mobile.text('25 Maret - 28 Maret 2020')
-						jumlahKelurahanTerjangkit = 0
+						jumlah1.text('152')
+						jumlah1Mobile.text('152')
+						jumlah2.text('152')
+						jumlah2Mobile.text('152')
                         d3.csv('data28maret.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah1.text(jumlahKelurahanTerjangkit)
-									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah2.text(jumlahKelurahanTerjangkit)
-									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
-								}
 								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -174,8 +169,6 @@ scene1Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step1Map1"}).triggerHo
 						jumlah1Mobile.text(jumlahKelurahanTerjangkit)
 						jumlah2.text(jumlahKelurahanTerjangkit)
 						jumlah2Mobile.text(jumlahKelurahanTerjangkit)
-						jumlah3.text(jumlahKelurahanTerjangkit)
-						jumlah3Mobile.text(jumlahKelurahanTerjangkit)
                         $('.desa').css('fill','#fff')
                     }).addTo(controller);
 scene2Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step2Map1"}).triggerHook(1)
@@ -184,16 +177,12 @@ scene2Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step2Map1"}).triggerHo
 						tgl1Mobile.text('28 Maret - 4 April 2020')
 						tgl2.text('28 Maret - 4 April 2020')
 						tgl2Mobile.text('28 Maret - 4 April 2020')
-						jumlahKelurahanTerjangkit = 0
+						jumlah1.text('193')
+						jumlah1Mobile.text('193')
+						jumlah2.text('193')
+						jumlah2Mobile.text('193')
                         d3.csv('data4april.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah1.text(jumlahKelurahanTerjangkit)
-									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah2.text(jumlahKelurahanTerjangkit)
-									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
-								}
 								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -221,17 +210,12 @@ scene2Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step2Map1"}).triggerHo
 						tgl1Mobile.text('25 Maret - 28 Maret 2020')
 						tgl2.text('25 Maret - 28 Maret 2020')
 						tgl2Mobile.text('25 Maret - 28 Maret 2020')
-						jumlahKelurahanTerjangkit = 0
+						jumlah1.text('152')
+						jumlah1Mobile.text('152')
+						jumlah2.text('152')
+						jumlah2Mobile.text('152')
                         d3.csv('data28maret.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah1.text(jumlahKelurahanTerjangkit)
-									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah2.text(jumlahKelurahanTerjangkit)
-									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
-									
-								}
 								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -260,16 +244,12 @@ scene3Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step3Map1"}).triggerHo
 						tgl1Mobile.text('4 April - 11 April 2020')
 						tgl2.text('4 April - 11 April 2020')
 						tgl2Mobile.text('4 April - 11 April 2020')
-						jumlahKelurahanTerjangkit = 0
+						jumlah1.text('227')
+						jumlah1Mobile.text('227')
+						jumlah2.text('227')
+						jumlah2Mobile.text('227')	
                         d3.csv('data11april.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah1.text(jumlahKelurahanTerjangkit)
-									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah2.text(jumlahKelurahanTerjangkit)
-									jumlah2Mobile.text(jumlahKelurahanTerjangkit)	
-								}
 								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -297,16 +277,12 @@ scene3Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step3Map1"}).triggerHo
 						tgl1Mobile.text('28 Maret - 4 April 2020')
 						tgl2.text('28 Maret - 4 April 2020')
 						tgl2Mobile.text('28 Maret - 4 April 2020')
-						jumlahKelurahanTerjangkit = 0
+						jumlah1.text('193')
+						jumlah1Mobile.text('193')
+						jumlah2.text('193')
+						jumlah2Mobile.text('193')
                         d3.csv('data4april.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah1.text(jumlahKelurahanTerjangkit)
-									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah2.text(jumlahKelurahanTerjangkit)
-									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
-								}
 								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -362,16 +338,12 @@ scene1Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step1Map2"}).triggerHo
 						tgl1Mobile.text('11 April - 25 April 2020')
 						tgl2.text('11 April - 25 April 2020')
 						tgl2Mobile.text('11 April - 25 April 2020')
-						jumlahKelurahanTerjangkit = 0
+						jumlah1.text('255')
+						jumlah1Mobile.text('255')
+						jumlah2.text('255')
+						jumlah2Mobile.text('255')
                         d3.csv('data25april.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah1.text(jumlahKelurahanTerjangkit)
-									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah2.text(jumlahKelurahanTerjangkit)
-									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
-								}
 								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -399,16 +371,12 @@ scene1Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step1Map2"}).triggerHo
 						tgl1Mobile.text('4 April - 11 April 2020')
 						tgl2.text('4 April - 11 April 2020')
 						tgl2Mobile.text('4 April - 11 April 2020')
-						jumlahKelurahanTerjangkit = 0
+						jumlah1.text('227')
+						jumlah1Mobile.text('227')
+						jumlah2.text('227')
+						jumlah2Mobile.text('227')
                         d3.csv('data11april.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah1.text(jumlahKelurahanTerjangkit)
-									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah2.text(jumlahKelurahanTerjangkit)
-									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
-								}
 								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -437,17 +405,12 @@ scene2Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step2Map2"}).triggerHo
 						tgl1Mobile.text('25 April - 16 Mei 2020')
 						tgl2.text('25 April - 16 Mei 2020')
 						tgl2Mobile.text('25 April - 16 Mei 2020')
-						jumlahKelurahanTerjangkit = 0
+						jumlah1.text('260')
+						jumlah1Mobile.text('260')
+						jumlah2.text('260')
+						jumlah2Mobile.text('260')
                         d3.csv('data16mei.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah1.text(jumlahKelurahanTerjangkit)
-									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah2.text(jumlahKelurahanTerjangkit)
-									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
-									
-								}
 								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -471,21 +434,16 @@ scene2Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step2Map2"}).triggerHo
 						})
                     })
                     .on("leave",(e)=>{
-						jumlahKelurahanTerjangkit = 0
 						tgl1.text('11 April - 25 April 2020')
 						tgl1Mobile.text('11 April - 25 April 2020')
 						tgl2.text('11 April - 25 April 2020')
 						tgl2Mobile.text('11 April - 25 April 2020')
+						jumlah1.text('255')
+						jumlah1Mobile.text('255')
+						jumlah2.text('255')
+						jumlah2Mobile.text('255')
                         d3.csv('data25april.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah1.text(jumlahKelurahanTerjangkit)
-									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah2.text(jumlahKelurahanTerjangkit)
-									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
-									
-								}
 								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -510,21 +468,16 @@ scene2Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step2Map2"}).triggerHo
                     }).addTo(controller);
 scene3Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step3Map2"}).triggerHook(1)
                     .on("enter",(e)=>{
-						jumlahKelurahanTerjangkit = 0
 						tgl1.text('16 Mei - 5 Juni 2020')
 						tgl1Mobile.text('16 Mei - 5 Juni 2020')
 						tgl2.text('16 Mei - 5 Juni 2020')
 						tgl2Mobile.text('16 Mei - 5 Juni 2020')
+						jumlah1.text('261')
+						jumlah1Mobile.text('261')
+						jumlah2.text('261')
+						jumlah2Mobile.text('261')
                         d3.csv('data5juni.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah1.text(jumlahKelurahanTerjangkit)
-									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah2.text(jumlahKelurahanTerjangkit)
-									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
-									
-								}
 								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -548,21 +501,16 @@ scene3Jakarta2 = new ScrollMagic.Scene({triggerElement: "#step3Map2"}).triggerHo
 						})
                     })
                     .on("leave",(e)=>{
-						jumlahKelurahanTerjangkit = 0
 						tgl1.text('25 April - 16 Mei 2020')
 						tgl1Mobile.text('25 April - 16 Mei 2020')
 						tgl2.text('25 April - 16 Mei 2020')
 						tgl2Mobile.text('25 April - 16 Mei 2020')
+						jumlah1.text('260')
+						jumlah1Mobile.text('260')
+						jumlah2.text('260')
+						jumlah2Mobile.text('260')
                         d3.csv('data16mei.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah1.text(jumlahKelurahanTerjangkit)
-									jumlah1Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah2.text(jumlahKelurahanTerjangkit)
-									jumlah2Mobile.text(jumlahKelurahanTerjangkit)
-									
-								}
 								if (v.positif > 70) {
 									$('.desa-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -617,16 +565,12 @@ scene1Jakarta3 = new ScrollMagic.Scene({triggerElement: "#step1Map3"}).triggerHo
 						tgl3Mobile.text('10 April - 17 April 2020')
 						tgl4.text('10 April - 17 April 2020')
 						tgl4Mobile.text('10 April - 17 April 2020')
-						jumlahKelurahanTerjangkit = 0
+						jumlah3.text('244')
+						jumlah3Mobile.text('244')
+						jumlah4.text('244')
+						jumlah4Mobile.text('244')
                         d3.csv('data17april.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah3.text(jumlahKelurahanTerjangkit)
-									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah4.text(jumlahKelurahanTerjangkit)
-									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
-								}
 								if (v.positif > 70) {
 									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -650,20 +594,16 @@ scene1Jakarta3 = new ScrollMagic.Scene({triggerElement: "#step1Map3"}).triggerHo
 						})
                     })
                     .on("leave",(e)=>{
-						jumlahKelurahanTerjangkit = 0
 						tgl3.text('25 Maret - 10 April 2020')
 						tgl3Mobile.text('25 Maret - 10 April 2020')
 						tgl4.text('25 Maret - 10 April 2020')
 						tgl4Mobile.text('25 Maret - 10 April 2020')
+						jumlah3.text('227')
+						jumlah3Mobile.text('227')
+						jumlah4.text('227')
+						jumlah4Mobile.text('227')
                         d3.csv('data11april.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah3.text(jumlahKelurahanTerjangkit)
-									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah4.text(jumlahKelurahanTerjangkit)
-									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
-								}
 								if (v.positif > 70) {
 									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -688,21 +628,16 @@ scene1Jakarta3 = new ScrollMagic.Scene({triggerElement: "#step1Map3"}).triggerHo
                     }).addTo(controller);
 scene2Jakarta3 = new ScrollMagic.Scene({triggerElement: "#step2Map3"}).triggerHook(1)
                     .on("enter",(e)=>{
-						jumlahKelurahanTerjangkit = 0
 						tgl3.text('17 April - 24 April 2020')
 						tgl3Mobile.text('17 April - 24 April 2020')
 						tgl4.text('17 April - 24 April 2020')
 						tgl4Mobile.text('17 April - 24 April 2020')
+						jumlah3.text('255')
+						jumlah3Mobile.text('255')
+						jumlah4.text('255')
+						jumlah4Mobile.text('255')
                         d3.csv('data24april.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah3.text(jumlahKelurahanTerjangkit)
-									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah4.text(jumlahKelurahanTerjangkit)
-									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
-									
-								}
 								if (v.positif > 70) {
 									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -726,21 +661,16 @@ scene2Jakarta3 = new ScrollMagic.Scene({triggerElement: "#step2Map3"}).triggerHo
 						})
                     })
                     .on("leave",(e)=>{
-						jumlahKelurahanTerjangkit = 0
 						tgl3.text('10 April - 17 April 2020')
 						tgl3Mobile.text('10 April - 17 April 2020')
 						tgl4.text('10 April - 17 April 2020')
 						tgl4Mobile.text('10 April - 17 April 2020')
+						jumlah3.text('244')
+						jumlah3Mobile.text('244')
+						jumlah4.text('244')
+						jumlah4Mobile.text('244')
                         d3.csv('data17april.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah3.text(jumlahKelurahanTerjangkit)
-									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah4.text(jumlahKelurahanTerjangkit)
-									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
-									
-								}
 								if (v.positif > 70) {
 									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -791,20 +721,16 @@ endpinJakarta4 = new ScrollMagic.Scene({triggerElement: '#endpinJakarta4Trigger'
 
 scene1Jakarta4 = new ScrollMagic.Scene({triggerElement: "#step1Map4"}).triggerHook(1)
                     .on("enter",(e)=>{
-						jumlahKelurahanTerjangkit = 0
 						tgl3.text('24 April - 8 Mei 2020')
 						tgl3Mobile.text('24 April - 8 Mei 2020')
 						tgl4.text('24 April - 8 Mei 2020')
 						tgl4Mobile.text('24 April - 8 Mei 2020')
+						jumlah3.text('261')
+						jumlah3Mobile.text('261')
+						jumlah4.text('261')
+						jumlah4Mobile.text('261')
                         d3.csv('data8mei.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah3.text(jumlahKelurahanTerjangkit)
-									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah4.text(jumlahKelurahanTerjangkit)
-									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
-								}
 								if (v.positif > 70) {
 									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -828,20 +754,16 @@ scene1Jakarta4 = new ScrollMagic.Scene({triggerElement: "#step1Map4"}).triggerHo
 						})
                     })
                     .on("leave",(e)=>{
-						jumlahKelurahanTerjangkit = 0
 						tgl3.text('17 April - 24 April 2020')
 						tgl3Mobile.text('17 April - 24 April 2020')
 						tgl4.text('17 April - 24 April 2020')
 						tgl4Mobile.text('17 April - 24 April 2020')
+						jumlah3.text('255')
+						jumlah3Mobile.text('255')
+						jumlah4.text('255')
+						jumlah4Mobile.text('255')
                         d3.csv('data24april.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah3.text(jumlahKelurahanTerjangkit)
-									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah4.text(jumlahKelurahanTerjangkit)
-									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
-								}
 								if (v.positif > 70) {
 									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -866,21 +788,16 @@ scene1Jakarta4 = new ScrollMagic.Scene({triggerElement: "#step1Map4"}).triggerHo
                     }).addTo(controller);
 scene2Jakarta4 = new ScrollMagic.Scene({triggerElement: "#step2Map4"}).triggerHook(1)
                     .on("enter",(e)=>{
-						jumlahKelurahanTerjangkit = 0
 						tgl3.text('8 Mei - 22 Mei 2020')
 						tgl3Mobile.text('8 Mei - 22 Mei 2020')
 						tgl4.text('8 Mei - 22 Mei 2020')
 						tgl4Mobile.text('8 Mei - 22 Mei 2020')
+						jumlah3.text('261')
+						jumlah3Mobile.text('261')
+						jumlah4.text('261')
+						jumlah4Mobile.text('261')
                         d3.csv('data22mei.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah3.text(jumlahKelurahanTerjangkit)
-									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah4.text(jumlahKelurahanTerjangkit)
-									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
-									
-								}
 								if (v.positif > 70) {
 									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -904,21 +821,16 @@ scene2Jakarta4 = new ScrollMagic.Scene({triggerElement: "#step2Map4"}).triggerHo
 						})
                     })
                     .on("leave",(e)=>{
-						jumlahKelurahanTerjangkit = 0
 						tgl3.text('24 April - 8 Mei 2020')
 						tgl3Mobile.text('24 April - 8 Mei 2020')
 						tgl4.text('24 April - 8 Mei 2020')
 						tgl4Mobile.text('24 April - 8 Mei 2020')
+						jumlah3.text('261')
+						jumlah3Mobile.text('261')
+						jumlah4.text('261')
+						jumlah4Mobile.text('261')
                         d3.csv('data8mei.csv',function(csv){
 							$.each(csv, function(id,v) {
-								if(v.positif > 0){
-									jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-									jumlah3.text(jumlahKelurahanTerjangkit)
-									jumlah3Mobile.text(jumlahKelurahanTerjangkit)
-									jumlah4.text(jumlahKelurahanTerjangkit)
-									jumlah4Mobile.text(jumlahKelurahanTerjangkit)
-									
-								}
 								if (v.positif > 70) {
 									$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 								} else if (v.positif > 60) {
@@ -943,21 +855,16 @@ scene2Jakarta4 = new ScrollMagic.Scene({triggerElement: "#step2Map4"}).triggerHo
 					}).addTo(controller);
 
 $(window).bind('load',function() {
-	jumlahKelurahanTerjangkit = 0
 	tgl3.text('25 Maret - 10 April 2020')
 	tgl3Mobile.text('25 Maret - 10 April 2020')
 	tgl4.text('25 Maret - 10 April 2020')
 	tgl4Mobile.text('25 Maret - 10 April 2020')
+	jumlah3.text('227')
+	jumlah3Mobile.text('227')
+	jumlah4.text('227')
+	jumlah4Mobile.text('227')
 	d3.csv('data11april.csv',function(csv){
 		$.each(csv, function(id,v) {
-			if(v.positif > 0){
-				jumlahKelurahanTerjangkit = jumlahKelurahanTerjangkit+1
-				jumlah3.text(jumlahKelurahanTerjangkit)
-				jumlah3Mobile.text(jumlahKelurahanTerjangkit)
-				jumlah4.text(jumlahKelurahanTerjangkit)
-				jumlah4Mobile.text(jumlahKelurahanTerjangkit)
-				
-			}
 			if (v.positif > 70) {
 				$('.desa2-'+string_to_slug(v.kelurahan)).css('fill',color[8])
 			} else if (v.positif > 60) {
