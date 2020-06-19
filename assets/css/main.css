@@ -1,6 +1,6 @@
 html {font-family: 'Montserrat', sans-serif; /* 1 */-ms-text-size-adjust:none; /* 2 */-webkit-text-size-adjust:none; /* 2 */font-size:18px; -webkit-font-smoothing: antialiased; font-weight:400; color:#000000;margin:0 auto;scroll-behavior: smooth;}
 div,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
-body{margin: 0;}
+body{margin: 0;overflow-x: hidden;width: 100vw;}
 
 /* header */
 header {font-family: 'Montserrat', sans-serif;color: #fff;font-weight: 700;width: 75%;text-align: center;z-index:1;} 
@@ -10,7 +10,7 @@ header a {color: white;}
 .pier h1 {color: white;line-height: normal;}
 .pier h2 {color: white;line-height: normal;}  
 .pier h3 {color: white;}
-.bg-blur{width: 100%;height: 100vh;position: absolute;z-index: 0;background-color: rgb(0, 0, 0, 0.5);margin: 0;}
+.bg-blur{width: 100%;height: 100vh;position: absolute;z-index: 0;background-color: rgb(0, 0, 0, 0.5);margin: 0;left: 0;}
 .tribune-logo-shadow {width:100%;display: block;margin:0 auto;top: 127px;}
 .tribune-logo-shadow img{width:200px; height: auto; margin:0 auto;}
 
@@ -22,10 +22,12 @@ header a {color: white;}
 .container.full{max-width:100%;}
 .container.small{max-width:1000px;}
 .container.smaller{max-width:600px;}
-.container-col{margin-left:-15px; margin-right:-15px;}
-.boxbox{margin:60px auto; padding:30px; border:1px solid #000; overflow:hidden;}
-.boxbox p{margin:0 0 30px 0;}
-.boxbox p:last-child{margin:0;}
+.container-col{margin-left:-15px; margin-right:-15px;padding: 0 15%;}
+.boxbox{margin:60px auto; overflow:hidden;}
+.step-container p, .boxbox p, .boxbox ul{font-family: 'PT Serif', serif;}
+.boxbox p, .boxbox ul{margin:0 0 30px 0;}
+.boxbox ul li {margin-bottom: 12px;}
+.boxbox p:last-child, .boxbox ul li:last-child{margin:0;}
 .containerfull{width:100%; display:block; overflow:hidden; border-top:1px solid #000;border-bottom:1px solid #000; position:relative;}
 .containerfull .container50left{width:50%; float:left;margin:0 auto;}
 .containerfull .container50right{width:50%;position:absolute; top:0; bottom:0; right:0; padding:0; display:flex; align-items:center; justify-content:center;}
@@ -55,42 +57,51 @@ footer .component-corp-legal>div .conde-logo {height: 29px;margin: 0 auto 30px}
 .social-media li{display: inline-block;margin-left: 5px;}
 .social-media a{font-size: 1.5em;color: #FFFFFF;width: 32px;height: 32px;border-radius: 16px;display: flex;border: 1px solid #fff;justify-content: center;align-items: center;}
 
-
+/* counter covid */
+.row{position:relative}.counter{padding-bottom: 20px;}.counter h4{text-align: center;}.counter p{color:#b9b9b9;position:absolute;left:5px;bottom:0px}.cards{display:flex;}.card{min-width:200px;border-radius:3px;text-align:center;color:#fff;margin:5px;padding:2px 10px}.card.aktif{background-color:#f60}.card.positif{background-color:#c00}.card.sembuh{background-color:#3c0}.card.meninggal{background-color:#000}.card .title{font-size:1rem;font-weight:700;margin:5px auto}.card h3{font-size:3rem;margin:0}.card p{font-weight:700;color:#fff;position:unset;margin: 0 0 10px;font-size: 16px;}.card p font{font-weight:300}@media screen and (max-width:800px){.container.covid{padding: 0;}.cards{position:relative;display:grid;grid-template-columns: repeat(2, 1fr);}.card{min-width: fit-content;}.card .title{font-size:16px}.card h3{font-size:2rem}.counter p{font-size: 12px;margin: 0 0 10px;}}@media screen and (max-width:350px){.card .title{font-size:1.5rem}.card{min-width:unset;width:46.5%}}@media screen and (max-width:300px){.card{min-width:unset;width:98%;margin: 5px 1%;}}
 /* scroll */
 #scrolly {position: relative;background-color: #f3f3f3;}
 figure {position: relative;left: 0;top: 0;height: 100vh;width: 100%;margin: 0;z-index: 1;overflow: hidden;}
 figure#flourishPinning{max-width: 1000px;left: unset;}
 figure#petaJakarta1Pinning, figure#petaJakarta2Pinning, figure#petaJakarta3Pinning, figure#petaJakarta4Pinning{display: flex;flex-direction: column;justify-content: center;}
 .scontainer{width: 100%;position: relative;z-index: 2;}
-.step {
-  position: relative;
-  max-width:800px;
-  margin: 0 auto 2rem auto;
-  font-family:'Montserrat';
-  height:100vh;
-}
+.step {position: relative;max-width:800px;margin: 0 auto 2rem auto;font-family:'Montserrat';height:100vh;}
+.step:last-child {margin-bottom: 0;}
+.step-container{background-color: rgba(255,255,255,0.9);border:1px solid #000;padding:15px;}
 
-.step:last-child {
-  margin-bottom: 0;
-}
-
-.step-container{
-  background-color: rgba(255,255,255,0.9);
-  border:1px solid #000;
-  padding:15px;
-}
 .desktopMap1, .desktopMap2, .desktopMap3, .desktopMap4{display: block;}
 .mobileMap1, .mobileMap2, .mobileMap3, .mobileMap4{display: none;}
 .legends{padding: 15pt;position: absolute;right: 0;bottom: 10px;list-style: none;}
 .legends li {margin: 10px auto;text-transform: uppercase;}
+.legends.map li {display: inline;}
 .legend{padding: 1px 10px ;margin-right: 2px;border: 1px solid #000;}
+/* map indo */
+.indonesia-regencies{margin-top: -100px;}
+.geo.region{cursor: pointer;stroke: #000;stroke-width: 0.2;}
+.geo.region:hover{stroke-width: 1;}
+.tooltip{position: absolute;padding: 8pt;z-index: 10;width: fit-content;margin: auto;border:1px solid #000;font-family: 'Montserrat',sans-serif;top: 100px;visibility:hidden;background-color: #fff;}
+/* gallery css */
+.g-gallery {--padding: 10px;--n-columns: 3;box-sizing: border-box;padding: calc(var(--padding)/2);z-index: 100;}
+.g-gallery .col-6, .g-gallery .col-7 {box-sizing: border-box;width: calc((100%/var(--n-columns))*3);}
+.g-gallery .g-asset {margin: 0;padding: calc(var(--padding)/2);}
+.g-gallery .g-label {background-color: transparent;top: calc(var(--padding)/2);left: calc(var(--padding)/2);right: auto;padding: calc(var(--padding)/2);font-weight: 600;text-shadow: 0 0 0.125em rgba(0, 0, 0, 0.4), 0.125em 0.125em 0.05em rgba(0, 0, 0, 0.4);text-align: left;font-size: 11px;}
+.g-gallery .g-gallery-wrapper {display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;-ms-flex-pack: start;justify-content: flex-start;}
+.g-gallery .g-asset.g-image {position: relative;}
+@media (min-width: 740px){
+  .g-gallery {--padding: 20px;--n-columns: 7;}
+  .g-gallery .g-gallery-wrapper {-ms-flex-pack: justify;justify-content: space-between;}
+  .g-gallery .col-7 {box-sizing: border-box;width: calc((100%/var(--n-columns))*7);}
+}
 /* mobile css */
 @media only screen and (max-width:1024px){
+	.indonesia-regencies{margin-top: -50px;}
   .desktopMap1, .desktopMap2, .desktopMap3, .desktopMap4{display: none;}
   .mobileMap1, .mobileMap2, .mobileMap3, .mobileMap4{display: block;}
 }
 @media only screen and (max-width:550px){
-footer .footer-wrapper {padding: 0;}
+	.container-col{padding: 0 5%;}
+	.legends.map{bottom:-50px}
+	footer .footer-wrapper {padding: 0;}
     footer .footer-wrapper .conde-links{display: grid;grid-template-columns: auto; grid-gap: 10px;padding: 0 25pt; justify-content: center; text-align: center;}
 	footer .conde-links .worldwide {width: 250px;margin: 0 auto;}
 	footer .component-corp-legal>div {margin-top: 10px;display: block;text-align: center;}
@@ -103,6 +114,7 @@ footer .footer-wrapper {padding: 0;}
 	footer .component-corp-legal>div .conde-logo {margin: 0 40px 0 0;width: auto;}
 }
 @media screen and (max-width:800px){
+.tooltip{position: fixed;top: unset !important;left: 0 !important;bottom: 0 ;right: 0 ;width: 100%;}
 .boxbox{margin:30px 10px;}
 .containerfull .container50left{width:100%; float:none;}
 .containerfull .container50right{width:100%; float:none; position:inherit;}
