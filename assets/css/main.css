@@ -94,9 +94,10 @@ figure#petaJakarta1Pinning, figure#petaJakarta2Pinning, figure#petaJakarta3Pinni
 }
 /* mobile css */
 @media only screen and (max-width:1024px){
+	.pier h1 {font-size: 36px;line-height: 40px;margin: 15px 0;}
 	.indonesia-regencies{margin-top: -50px;}
-  .desktopMap1, .desktopMap2, .desktopMap3, .desktopMap4{display: none;}
-  .mobileMap1, .mobileMap2, .mobileMap3, .mobileMap4{display: block;}
+	.desktopMap1, .desktopMap2, .desktopMap3, .desktopMap4{display: none;}
+	.mobileMap1, .mobileMap2, .mobileMap3, .mobileMap4{display: block;}
 }
 @media only screen and (max-width:550px){
 	.container-col{padding: 0 5%;}
@@ -114,6 +115,9 @@ figure#petaJakarta1Pinning, figure#petaJakarta2Pinning, figure#petaJakarta3Pinni
 	footer .component-corp-legal>div .conde-logo {margin: 0 40px 0 0;width: auto;}
 }
 @media screen and (max-width:800px){
+.pier h2 {
+	font-size: 1em;line-height: 30px;
+}
 .tooltip{position: fixed;top: unset !important;left: 0 !important;bottom: 0 ;right: 0 ;width: 100%;}
 .boxbox{margin:30px 10px;}
 .containerfull .container50left{width:100%; float:none;}

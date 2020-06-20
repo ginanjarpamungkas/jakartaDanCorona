@@ -407,10 +407,10 @@ scene7Jakarta1 = new ScrollMagic.Scene({triggerElement: "#step7Map1"}).triggerHo
 						})
                     })
                     .on("leave",(e)=>{
-						tgl1.text('25 Maret - 10 April 2020')
-						tgl1Mobile.text('25 Maret - 10 April 2020')
-						jumlah1.text('227')
-						jumlah1Mobile.text('227')
+						tgl1.text('16 Mei - 5 Juni 2020')
+						tgl1Mobile.text('16 Mei - 5 Juni 2020')
+						jumlah1.text('261')
+						jumlah1Mobile.text('261')
                         d3.csv('data5juni.csv',function(csv){
 							$.each(csv, function(id,v) {
 								if (v.positif > 70) {

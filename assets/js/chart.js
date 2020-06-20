@@ -11,7 +11,8 @@ var kasusMeninggalChart2 = [49, 31, 50, 32, 40, 36, 41, 48, 43, 43, 64, 33, 45]
 var jumlahKumulatifChart2 = [703, 1696, 2368, 3215, 4258, 5498, 6477, 7588, 8602, 9459, 10476, 11582, 12613]
 
 Highcharts.chart('container_chart1', {
-    title: { style: {color: '#000'},text: 'Grafik' },
+    title: { style: {color: '#000'},text: 'Grafik Kenaikan Kasus' },
+    subtitle: { style: {color: '#000'},text: 'Periode 23 April - 23 Mei 2020' },
     xAxis: {
         min:0,
         title: { style: {color: '#000'},text: 'Periode' },                        
@@ -66,7 +67,8 @@ Highcharts.chart('container_chart1', {
 });
 
 Highcharts.chart('container_chart2', {
-    title: { style: {color: '#000'},text: 'Grafik' },
+    title: { style: {color: '#000'},text: 'Grafik Kenaikan Kasus' },
+    subtitle: { style: {color: '#000'},text: 'Periode 5 Juni - 17 Juni 2020' },
     xAxis: {
         min:0,
         title: { style: {color: '#000'},text: 'Periode' },                        
