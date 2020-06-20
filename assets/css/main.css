@@ -66,6 +66,7 @@ figure#flourishPinning{max-width: 1000px;left: unset;}
 figure#petaJakarta1Pinning, figure#petaJakarta2Pinning, figure#petaJakarta3Pinning, figure#petaJakarta4Pinning{display: flex;flex-direction: column;justify-content: center;}
 .scontainer{width: 100%;position: relative;z-index: 2;}
 .step {position: relative;max-width:800px;margin: 0 auto 2rem auto;font-family:'Montserrat';height:100vh;}
+.step.step50 {height: 50vh;}
 .step:last-child {margin-bottom: 0;}
 .step-container{background-color: rgba(255,255,255,0.9);border:1px solid #000;padding:15px;}
 
@@ -73,9 +74,12 @@ figure#petaJakarta1Pinning, figure#petaJakarta2Pinning, figure#petaJakarta3Pinni
 .mobileMap1, .mobileMap2, .mobileMap3, .mobileMap4{display: none;}
 .legends{padding: 15pt;position: absolute;right: 0;bottom: 10px;list-style: none;}
 .legends li {margin: 10px auto;text-transform: uppercase;}
+.legends.map li {font-size: 10px;}
+.legends.map .legend{padding: 0 5px;}
 .legends.map li {display: inline;}
 .legend{padding: 1px 10px ;margin-right: 2px;border: 1px solid #000;}
 /* map indo */
+.disabled {fill: #fff;}
 .indonesia-regencies{margin-top: -100px;}
 .geo.region{cursor: pointer;stroke: #000;stroke-width: 0.2;}
 .geo.region:hover{stroke-width: 1;}
@@ -102,6 +106,7 @@ figure#petaJakarta1Pinning, figure#petaJakarta2Pinning, figure#petaJakarta3Pinni
 @media only screen and (max-width:550px){
 	.container-col{padding: 0 5%;}
 	.legends.map{bottom:-50px}
+	.mapSVG{margin-top: 30px;}
 	footer .footer-wrapper {padding: 0;}
     footer .footer-wrapper .conde-links{display: grid;grid-template-columns: auto; grid-gap: 10px;padding: 0 25pt; justify-content: center; text-align: center;}
 	footer .conde-links .worldwide {width: 250px;margin: 0 auto;}
