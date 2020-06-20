@@ -9,6 +9,13 @@ var kasusBaruChart2 =  [703, 993, 672, 847, 1043, 1240, 979, 1111, 1014, 857, 1
 var kasusSembuhChart2 = [551, 464, 591, 406, 510, 715, 507, 577, 563, 755, 592, 580, 540, 555, 551]
 var kasusMeninggalChart2 = [49, 31, 50, 32, 40, 36, 41, 48, 43, 43, 64, 33, 45, 63, 34]
 var jumlahKumulatifChart2 = [703, 1696, 2368, 3215, 4258, 5498, 6477, 7588, 8602, 9459, 10476, 11582, 12613, 13944, 14985]
+Highcharts.setOptions({
+    chart: {
+        style: {
+            fontFamily: 'Montserrat'
+        }
+    }
+});
 
 Highcharts.chart('container_chart1', {
     title: { style: {color: '#000'},text: 'Grafik Kenaikan Kasus' },

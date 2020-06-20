@@ -673,3 +673,26 @@ function loadTooltip(d){
         }
     });
 }
+function changeLanguage(e) {
+	var id = $(e).data('id')
+	$('.country').attr('class','country')
+	$('.id-content').hide()
+	$('.en-content').hide()
+	$('#'+id+'-country').attr('class','country active')
+	$('.'+id+'-content').fadeIn('slow')
+	$('#id-country-dropdown').data('id',0)
+	$('#en-country-dropdown').data('id',0)
+	$('.dropdown').slideUp('slow');
+}  
+function dropdown(e) {
+	if ($(e).data('id') != 1) {
+	  $('.dropdown').slideDown('slow');
+	  $(e).data('id',1)
+	} else {
+	  $('.dropdown').slideUp('slow');
+	  $(e).data('id',0)
+	}
+}
+$(document).ready(function() {
+	
+})
