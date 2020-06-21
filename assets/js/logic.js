@@ -20,7 +20,7 @@ var pathMobile = d3.geoPath().projection(projectionMobile);
 var svg1 = d3.select(".desktopMap1").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 530').attr('id', 'petaJakarta1')
 var gJakarta1 = svg1.append("g").attr("class", "jakarta1")
 var title1id = svg1.append("text").attr("class", "id-content").attr("transform", "translate(" + 100 + "," + 400 + ")").text('Kelurahan Terjangkit').attr('font-weight','bold')
-var title1en = svg1.append("text").attr("class", "en-content").attr("transform", "translate(" + 100 + "," + 400 + ")").text('Village').attr('font-weight','bold')
+var title1en = svg1.append("text").attr("class", "en-content").attr("transform", "translate(" + 100 + "," + 400 + ")").text('Infected Village').attr('font-weight','bold')
 
 var jumlah1id = title1id.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','kelurahanTerjangkit');
 var jumlah1en = title1en.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','kelurahanTerjangkit');
@@ -37,7 +37,7 @@ var tgl1en = periode1en.append('tspan').attr('x', 0).attr('dy', '1.3em').text("t
 var svg1Mobile = d3.select(".mobileMap1").append("svg").attr('x', 0).attr('y', 0).attr('viewBox', '0 0 960 960').attr('id', 'petaJakarta1Mobile')
 var gJakarta1Mobile = svg1Mobile.append("g").attr("class", "jakarta1Mobile")
 var title1MobileId = svg1Mobile.append("text").attr("class", "id-content").attr("transform", "translate(" + 20 + "," + 850 + ")").text('Kelurahan Terjangkit').attr('font-weight','bold').attr('font-size','20pt')
-var title1MobileEn = svg1Mobile.append("text").attr("class", "en-content").attr("transform", "translate(" + 20 + "," + 850 + ")").text('Village').attr('font-weight','bold').attr('font-size','20pt')
+var title1MobileEn = svg1Mobile.append("text").attr("class", "en-content").attr("transform", "translate(" + 20 + "," + 850 + ")").text('Infected Village').attr('font-weight','bold').attr('font-size','20pt')
 
 var jumlah1MobileId = title1MobileId.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','kelurahanTerjangkit');
 var jumlah1MobileEn = title1MobileEn.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','kelurahanTerjangkit');
@@ -569,7 +569,7 @@ var svg2 = d3.select(".desktopMap2").append("svg").attr('x', 0).attr('y', 0).att
 var gJakarta2 = svg2.append("g").attr("class", "jakarta2")
 
 var title2id = svg2.append("text").attr("class", "id-content").attr("transform", "translate(" + 100 + "," + 400 + ")").text('Kelurahan Terjangkit').attr('font-weight','bold')
-var title2en = svg2.append("text").attr("class", "en-content").attr("transform", "translate(" + 100 + "," + 400 + ")").text('Village').attr('font-weight','bold')
+var title2en = svg2.append("text").attr("class", "en-content").attr("transform", "translate(" + 100 + "," + 400 + ")").text('Infected Village').attr('font-weight','bold')
 
 var jumlah2id = title2id.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','id-content');
 var jumlah2en = title2en.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','en-content');
@@ -587,7 +587,7 @@ var svg2Mobile = d3.select(".mobileMap2").append("svg").attr('x', 0).attr('y', 0
 var gJakarta2Mobile = svg2Mobile.append("g").attr("class", "jakarta2Mobile")
 
 var title2MobileId = svg2Mobile.append("text").attr("class", "id-content").attr("transform", "translate(" + 20 + "," + 850 + ")").text('Kelurahan Terjangkit').attr('font-weight','bold').attr('font-size','20pt')
-var title2MobileEn = svg2Mobile.append("text").attr("class", "en-content").attr("transform", "translate(" + 20 + "," + 850 + ")").text('Village').attr('font-weight','bold').attr('font-size','20pt')
+var title2MobileEn = svg2Mobile.append("text").attr("class", "en-content").attr("transform", "translate(" + 20 + "," + 850 + ")").text('Infected Village').attr('font-weight','bold').attr('font-size','20pt')
 
 var jumlah2MobileId = title2MobileId.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','id-content');
 var jumlah2MobileEn = title2MobileEn.append('tspan').attr('x', 0).attr('dy', '1.3em').text("0").attr('font-weight','400').attr('class','en-content');
