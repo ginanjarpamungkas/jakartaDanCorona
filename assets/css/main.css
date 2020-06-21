@@ -10,7 +10,7 @@ header a {color: white;}
 .pier h1 {color: white;line-height: normal;}
 .pier h2 {color: white;line-height: normal;}  
 .pier h3 {color: white;}
-.bg-blur{width: 100%;height: 100vh;position: absolute;z-index: 0;background-color: rgb(0, 0, 0, 0.5);margin: 0;left: 0;}
+.bg-blur{width: 100vw;height: 100vh;position: absolute;z-index: 0;background-color: rgb(0, 0, 0, 0.5);margin: 0;left: 0;}
 .tribune-logo-shadow {width:100%;display: block;margin:0 auto;top: 127px;}
 .tribune-logo-shadow img{width:200px; height: auto; margin:0 auto;}
 
@@ -96,7 +96,7 @@ a#id-country-dropdown, a#en-country-dropdown{border: 1px solid black;}
 .language img {width: 20px;}
 .country{display: none;}
 .country.active{display: block;}
-.en-content {display: none;}
+.id-content, .en-content {display: none;}
 .dropdown {background-color: #fff;padding: 5pt;display: none;border: 1px solid black;}
 @media (min-width: 740px){
   .g-gallery {--padding: 20px;--n-columns: 7;}
