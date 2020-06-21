@@ -1,7 +1,7 @@
 html {font-family: 'Montserrat', sans-serif; /* 1 */-ms-text-size-adjust:none; /* 2 */-webkit-text-size-adjust:none; /* 2 */font-size:18px; -webkit-font-smoothing: antialiased; font-weight:400; color:#000000;margin:0 auto;scroll-behavior: smooth;}
 div,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
 body{margin: 0;overflow-x: hidden;width: 100vw;}
-
+.container-col img{width: 100%;}
 /* header */
 header {font-family: 'Montserrat', sans-serif;color: #fff;font-weight: 700;width: 75%;text-align: center;z-index:1;} 
 header h1 {margin: 0;font-size: 6vw;} 
@@ -81,12 +81,14 @@ figure#petaJakarta1Pinning, figure#petaJakarta2Pinning, figure#petaJakarta3Pinni
 /* map indo */
 .highcharts-title{font-weight: bold;}
 .disabled {fill: #fff;}
+.enabled {fill:#cc0000}
 .indonesia-regencies{margin-top: -100px;}
 .geo.region{cursor: pointer;stroke: #000;stroke-width: 0.2;}
 .geo.region:hover{stroke-width: 1;}
 .tooltip{position: absolute;padding: 8pt;z-index: 10;width: fit-content;margin: auto;border:1px solid #000;font-family: 'Montserrat',sans-serif;top: 100px;visibility:hidden;background-color: #fff;}
 .flourish-credit{display: none;}
 .mapSVG{font-weight: bold;}
+.mapSVG i {font-weight: 400;font-style: normal;font-size: 12px;}
 /* language */
 .language {position: absolute;z-index: 2000;cursor: pointer;right: 5px;top:5px;}
 .language a {display: flex;align-items: center;padding: 5pt;background-color: #fff;}

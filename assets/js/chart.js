@@ -18,17 +18,18 @@ Highcharts.setOptions({
 });
 
 Highcharts.chart('container_chart1', {
-    title: { style: {color: '#000'},text: 'Grafik Kenaikan Kasus' },
-    subtitle: { style: {color: '#000'},text: 'Periode 23 April - 23 Mei 2020' },
+    // title: { style: {color: '#000'},text: 'Grafik Kenaikan Kasus' },
+    // subtitle: { style: {color: '#000'},text: 'Periode 23 April - 23 Mei 2020' },
+    title:null,
     xAxis: {
         min:0,
-        title: { style: {color: '#000'},text: 'Periode' },                        
+        title: { style: {color: '#000'},text: 'Period' },                        
         categories: tanggalChart1,
         labels:{style: {color: '#000'}},
     },
     yAxis: {
         min: 0,
-        title: { style: {color: '#000'},text: 'Kasus' },
+        title: { style: {color: '#000'},text: 'Case' },
         labels: {style: {color: '#000'},}
     },
     exporting:{ enabled:false },
@@ -56,15 +57,15 @@ Highcharts.chart('container_chart1', {
     },
     series: [{
         type: 'column',
-        name: 'Konfirmasi',
+        name: 'Positive',
         data: kasusBaruChart1
     },{
         type: 'column',
-        name: 'Sembuh',
+        name: 'Recovery',
         data: kasusSembuhChart1
     },{
         type: 'column',
-        name: 'Meninggal',
+        name: 'Death',
         data: kasusMeninggalChart1
     },{
         type: 'line',
@@ -74,17 +75,19 @@ Highcharts.chart('container_chart1', {
 });
 
 Highcharts.chart('container_chart2', {
-    title: { style: {color: '#000'},text: 'Grafik Kenaikan Kasus' },
-    subtitle: { style: {color: '#000'},text: 'Periode 5 Juni - 17 Juni 2020' },
+    // title: { style: {color: '#000'},text: 'Grafik Kenaikan Kasus' },
+    // title: { style: {color: '#000'},text: 'Case Increase Graph' },
+    // subtitle: { style: {color: '#000'},text: 'Periode 5 Juni - 17 Juni 2020' },
+    title:null,
     xAxis: {
         min:0,
-        title: { style: {color: '#000'},text: 'Periode' },                        
+        title: { style: {color: '#000'},text: 'Period' },                        
         categories: tanggalChart2,
         labels:{style: {color: '#000'}},
     },
     yAxis: {
         min: 0,
-        title: { style: {color: '#000'},text: 'Kasus' },
+        title: { style: {color: '#000'},text: 'Case' },
         labels: {style: {color: '#000'},}
     },
     exporting:{ enabled:false },
@@ -112,15 +115,15 @@ Highcharts.chart('container_chart2', {
     },
     series: [{
         type: 'column',
-        name: 'Konfirmasi',
+        name: 'Positive',
         data: kasusBaruChart2
     },{
         type: 'column',
-        name: 'Sembuh',
+        name: 'Recovery',
         data: kasusSembuhChart2
     },{
         type: 'column',
-        name: 'Meninggal',
+        name: 'Death',
         data: kasusMeninggalChart2
     },{
         type: 'line',
